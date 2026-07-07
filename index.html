@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+    <title>Space Shooter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-wrapper">
+        <!-- Меню -->
+        <div id="menu-screen" class="screen active">
+            <div class="menu-content">
+                <h1>🚀 SPACE SHOOTER</h1>
+                <p class="subtitle">Космический шутер</p>
+                <button class="btn" id="btn-play">ИГРАТЬ</button>
+                <button class="btn" id="btn-upgrades">УЛУЧШЕНИЯ</button>
+                <button class="btn" id="btn-howto">КАК ИГРАТЬ</button>
+            </div>
+        </div>
+
+        <!-- Экран улучшений -->
+        <div id="upgrades-screen" class="screen">
+            <div class="menu-content">
+                <h2>🔧 УЛУЧШЕНИЯ</h2>
+                <div id="coins-display">⭐ <span id="coins-count">0</span></div>
+                <div id="upgrades-list">
+                    <div class="upgrade-item" data-upgrade="speed">
+                        <span class="upgrade-name">🚀 Скорость</span>
+                        <span class="upgrade-level">Ур. <span id="upgrade-speed">1</span></span>
+                        <span class="upgrade-cost">💰 <span id="cost-speed">100</span></span>
+                        <button class="btn-small" onclick="buyUpgrade('speed')">Купить</button>
+                    </div>
+                    <div class="upgrade-item" data-upgrade="damage">
+                        <span class="upgrade-name">💥 Урон</span>
+                        <span class="upgrade-level">Ур. <span id="upgrade-damage">1</span></span>
+                        <span class="upgrade-cost">💰 <span id="cost-damage">150</span></span>
+                        <button class="btn-small" onclick="buyUpgrade('damage')">Купить</button>
+                    </div>
+                    <div class="upgrade-item" data-upgrade="fireRate">
+                        <span class="upgrade-name">🔫 Скорострельность</span>
+                        <span class="upgrade-level">Ур. <span id="upgrade-fireRate">1</span></span>
+                        <span class="upgrade-cost">💰 <span id="cost-fireRate">200</span></span>
+                        <button class="btn-small" onclick="buyUpgrade('fireRate')">Купить</button>
+                    </div>
+                    <div class="upgrade-item" data-upgrade="shield">
+                        <span class="upgrade-name">🛡️ Щит</span>
+                        <span class="upgrade-level">Ур. <span id="upgrade-shield">0</span></span>
+                        <span class="upgrade-cost">💰 <span id="cost-shield">300</span></span>
+                        <button class="btn-small" onclick="buyUpgrade('shield')">Купить</button>
+                    </div>
+                    <div class="upgrade-item" data-upgrade="multiShot">
+                        <span class="upgrade-name">✨ Мультивыстрел</span>
+                        <span class="upgrade-level">Ур. <span id="upgrade-multiShot">1</span></span>
+                        <span class="upgrade-cost">💰 <span id="cost-multiShot">500</span></span>
+                        <button class="btn-small" onclick="buyUpgrade('multiShot')">Купить</button>
+                    </div>
+                </div>
+                <button class="btn back-btn" onclick="showMenu()">НАЗАД</button>
+            </div>
+        </div>
+
+        <!-- Экран "Как играть" -->
+        <div id="howto-screen" class="screen">
+            <div class="menu-content">
+                <h2>📖 КАК ИГРАТЬ</h2>
+                <div class="howto-text">
+                    <p>🖥️ <b>ПК:</b> WASD / Стрелки — движение, Пробел — стрельба</p>
+                    <p>📱 <b>Мобильные:</b> Коснись экрана — корабль следует за пальцем, стрельба авто</p>
+                    <p>🎯 Уничтожай врагов, собирай монеты и прокачивай корабль!</p>
+                    <p>⭐ За каждого врага дают монеты</p>
+                    <p>📈 С каждым уровнем враги становятся сильнее</p>
+                    <p>💀 3 жизни — не дай врагам прорваться!</p>
+                </div>
+                <button class="btn back-btn" onclick="showMenu()">НАЗАД</button>
+            </div>
+        </div>
+
+        <!-- Экран игры -->
+        <div id="game-screen" class="screen">
+            <canvas id="gameCanvas"></canvas>
+            <div id="game-hud">
+                <div id="hud-level">Уровень: <span id="level-display">1</span></div>
+                <div id="hud-score">⭐ <span id="score-display">0</span></div>
+                <div id="hud-lives">❤️ <span id="lives-display">3</span></div>
+                <div id="hud-weapon">🔫 <span id="weapon-display">Обычный</span></div>
+            </div>
+        </div>
+
+        <!-- Game Over -->
+        <div id="gameover-screen" class="screen">
+            <div class="menu-content">
+                <h2>💀 ИГРА ОКОНЧЕНА</h2>
+                <p>Счёт: <span id="final-score">0</span></p>
+                <p>Уровень: <span id="final-level">1</span></p>
+                <p>Заработано монет: +<span id="final-coins">0</span></p>
+                <button class="btn" onclick="restartGame()">ЗАНОВО</button>
+                <button class="btn back-btn" onclick="showMenu()">МЕНЮ</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
